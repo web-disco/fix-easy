@@ -18,7 +18,7 @@ const TextBlockWithImage = ({ module }) => {
           to={url}
           title={text}
           target={target}
-          className="inline-block mt-8 md:mt-8 px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-primary-500 hover:bg-primary-700 focus:outline-none focus:border-primary-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
+          className="inline-block mt-8 md:mt-8 px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-orange hover:bg-orange focus:outline-none focus:border-orange focus:shadow-outline-indigo transition ease-in-out duration-150"
         >
           {text}
         </Link>
@@ -30,7 +30,7 @@ const TextBlockWithImage = ({ module }) => {
           href={url}
           title={text}
           target={target}
-          className="inline-block mt-8 md:mt-8 px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-primary-500 hover:bg-primary-700 focus:outline-none focus:border-primary-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
+          className="inline-block mt-8 md:mt-8 px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-orange hover:bg-orange focus:outline-none focus:border-orange focus:shadow-outline-indigo transition ease-in-out duration-150"
         >
           {text}
         </a>
@@ -39,8 +39,8 @@ const TextBlockWithImage = ({ module }) => {
   }
 
   return (
-    <div className="relative px-8">
-      <div className="flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24 items-center">
+    <div className="relative">
+      <div className="flex flex-col md:flex-row justify-between max-w-screen-xl px-4 mx-auto py-12 md:py-18 items-center">
         <div className="md:w-6/12 flex-shrink-0 relative">
           {customFields.primaryButton ? (
             <Link to={customFields.primaryButton.href}>
@@ -48,7 +48,7 @@ const TextBlockWithImage = ({ module }) => {
                 image={customFields.image}
                 layout="constrained"
                 width="768"
-                height="512"
+                height="600"
                 className="rounded-lg object-cover object-center cursor-pointer"
               />
             </Link>
@@ -63,22 +63,24 @@ const TextBlockWithImage = ({ module }) => {
           )}
         </div>
         <div
-          className={`md:w-6/12 mt-16 md:mt-0 ${
+          className={`md:w-6/12 mt-8 md:mt-0 ${
             customFields.imagePosition !== "right"
               ? `md:ml-12 lg:ml-16 md:order-last`
               : `md:mr-12 lg:mr-16 md:order-first`
           }`}
         >
-          <div className="g:py-8 text-center md:text-left">
-            {customFields.tagline && (
-              <span className="font-bold text-primary-500 text-sm text-center md:text-left uppercase">
-                {customFields.tagline}
-              </span>
-            )}
-            <h2 className="font-display text-4xl font-black text-secondary-500 md:text-3xl lg:text-5xl tracking-wide text-center mt-4 lg:leading-tight md:text-left">
-              {customFields.title}
-            </h2>
-            <p className="mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-200">
+          <div className="g:py-8 md:text-left">
+            <div className="border-l-4 pl-4 border-orange">
+              {customFields.tagline && (
+                <span className="font-bold text-lightGrey text-xs md:text-left uppercase">
+                  {customFields.tagline}
+                </span>
+              )}
+              <h2 className="font-display text-2xl md:text-4xl font-bold text-darkGrey tracking-wide mt-2">
+                {customFields.title}
+              </h2>
+            </div>
+            <p className="mt-4 text-lightGrey text-left text-base leading-relaxed text-secondary-200">
               {customFields.content}
             </p>
             {customFields.primaryButton &&

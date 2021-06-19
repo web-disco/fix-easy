@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 import agilityUtils from "./agility/utils"
 import { getPageTemplate } from "./components/agility-pageTemplates"
-import PreviewBar from "./components/common/PreviewBar"
 import SiteHeader from "./components/common/SiteHeader"
 import SiteFooter from "./components/common/SiteFooter"
 import SEO from "./components/common/SEO"
@@ -44,7 +43,6 @@ const AgilityPage = ({ pageContext, data }) => {
         keywords={viewModel.page.seo.metaKeywords}
         ogImage={viewModel.dynamicPageItem?.customFields?.image?.url}
       />
-      <PreviewBar isPreview={viewModel.isPreview} />
       <div id="site-wrapper" className="flex flex-col min-h-screen">
         <SiteHeader
           languageCode={viewModel.languageCode}
@@ -53,7 +51,7 @@ const AgilityPage = ({ pageContext, data }) => {
         <main className="flex-grow">
           <AgilityPageTemplate {...viewModel} />
         </main>
-        <SiteFooter />
+        {/* <SiteFooter /> */}
       </div>
     </>
   )

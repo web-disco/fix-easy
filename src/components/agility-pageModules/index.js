@@ -1,20 +1,22 @@
 import RichTextArea from "./RichTextArea"
-import FeaturedPost from "./FeaturedPost"
-import PostsListing from "./PostsListing"
-import PostDetails from "./PostDetails"
-import Heading from "./Heading"
 import TextBlockWithImage from "./TextBlockWithImage"
+import HomeHero from "./HomeHero"
+import ServicesSlider from "./ServicesSlider"
+import TestimonialsSlider from "./TestimonialsSlider"
+import ServiceDetails from "./ServiceDetails"
+import PageHero from "./PageHero"
 
 // All of the Agility Page Module Components that are in use in this site need to be imported into this index file.
 // Place Page Modules in allModules array below, passing in a name and the component.
 
 const allModules = [
   { name: "TextBlockWithImage", module: TextBlockWithImage },
-  { name: "Heading", module: Heading },
-  { name: "FeaturedPost", module: FeaturedPost },
-  { name: "PostsListing", module: PostsListing },
-  { name: "PostDetails", module: PostDetails },
   { name: "RichTextArea", module: RichTextArea },
+  { name: "HomeHero", module: HomeHero },
+  { name: "ServicesSlider", module: ServicesSlider },
+  { name: "TestimonialsSlider", module: TestimonialsSlider },
+  { name: "ServiceDetails", module: ServiceDetails },
+  { name: "PageHero", module: PageHero },
 ]
 
 export const getModule = moduleName => {

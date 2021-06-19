@@ -159,9 +159,20 @@ exports.createResolvers = args => {
       sitemapNode: agility.getDynamicPageItemSitemapNode(),
 
       // get the category
-      linkedContent_agilityCategory: agility.getLinkedContentItem({
-        type: "agilityCategory",
-        linkedContentFieldName: "category",
+      // linkedContent_agilityCategory: agility.getLinkedContentItem({
+      //   type: "agilityCategory",
+      //   linkedContentFieldName: "category",
+      // }),
+    },
+    // on the 'agilityService' node type
+    agilityService: {
+      // get the sitemap node that represents this item ( i.e. /services/phone-repair )
+      sitemapNode: agility.getDynamicPageItemSitemapNode(),
+
+      // get linked service details
+      linkedContent_agilityServiceDetails: agility.getLinkedContentList({
+        type: "agilityServiceDetail",
+        linkedContentFieldName: "serviceDetails",
       }),
     },
   }
