@@ -21,6 +21,16 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
           languageCode
           path
           menuText
+          title
+          isFolder
+        }
+      }
+      services: allAgilityService {
+        nodes {
+          sitemapNode {
+            title
+            path
+          }
         }
       }
     }
@@ -31,6 +41,9 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
 
   // get header
   const header = data.siteHeader.customFields
+
+  // get services
+  const services = data.services.nodes
 
   // create our links
   const links = data.links.nodes.filter(sitemapNode => {
@@ -58,7 +71,7 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
   }
   return (
     <>
-      <header className="relative w-full mx-auto bg-white px-4 py-4">
+      <header className="relative w-full mx-auto bg-white px-4 md:px-8 py-4">
         <div className="max-w-screen-xl mx-auto">
           <div className="flex justify-between items-center">
             <Link to="/" title={header.siteName}>
@@ -71,17 +84,53 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
               />
             </Link>
             <nav className="hidden md:block">
-              {links.map((navitem, index) => {
-                return (
-                  <Link
-                    to={navitem.path}
-                    key={`mobile-${index}`}
-                    className="text-lightGrey font-bold mr-6 last:mr-0"
-                  >
-                    {navitem.menuText}
-                  </Link>
-                )
-              })}
+              <ul className="flex">
+                {links.map((navitem, index) => {
+                  return (
+                    <li
+                      className="mr-6 last:mr-0 relative hover:text-orange"
+                      key={index}
+                    >
+                      {!navitem.isFolder ? (
+                        <Link
+                          to={navitem.path}
+                          className="text-lightGrey font-bold hover:text-orange"
+                        >
+                          {navitem.menuText}
+                        </Link>
+                      ) : (
+                        <span
+                          className="text-lightGrey font-bold cursor-pointer hover:text-orange"
+                          onClick={() => setOpen(!open)}
+                        >
+                          {navitem.menuText}
+                        </span>
+                      )}
+                      {navitem.menuText === "Services" ? (
+                        <ul
+                          className={`absolute z-50 bg-white w-60 px-3 ${
+                            open ? `block` : `hidden`
+                          }`}
+                          onMouseLeave={() => setOpen(false)}
+                        >
+                          {services.map((service, index) => (
+                            <li className="my-2" key={index}>
+                              <Link
+                                to={service.sitemapNode.path}
+                                title={service.sitemapNode.title}
+                                className="text-lightGrey hover:text-orange font-medium"
+                                activeClassName="active"
+                              >
+                                {service.sitemapNode.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </li>
+                  )
+                })}
+              </ul>
             </nav>
           </div>
         </div>

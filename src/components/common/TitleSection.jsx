@@ -6,7 +6,7 @@ const TitleSection = ({ subTitle, title }) => {
       <span className="font-bold text-lightGrey text-xs md:text-left uppercase">
         {subTitle}
       </span>
-      <h2 className="font-display text-2xl md:text-4xl font-bold text-darkGrey tracking-wide mt-2">
+      <h2 className="font-display text-2xl md:text-3xl font-bold text-darkGrey tracking-wide mt-2">
         {title}
       </h2>
     </div>

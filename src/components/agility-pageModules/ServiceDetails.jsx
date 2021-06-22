@@ -8,6 +8,7 @@ import "swiper/components/navigation/navigation.min.css"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/swiper-bundle.min.css"
 import TitleSection from "../common/TitleSection"
+import ServiceCTA from "../common/ServiceCTA"
 
 // install Swiper modules
 SwiperCore.use([Navigation])
@@ -33,6 +34,8 @@ const ServiceDetails = ({ dynamicPageItem }) => {
     getGallery()
   }, [customFields.gallery.galleryid])
 
+  console.log(gallery)
+
   // get services list
   const data = useStaticQuery(graphql`
     query {
@@ -57,8 +60,6 @@ const ServiceDetails = ({ dynamicPageItem }) => {
     service => service.contentID === dynamicPageItem.contentID
   )
 
-  console.log(service)
-
   return (
     <>
       <div className="bg-lighterGrey py-28">
@@ -69,10 +70,10 @@ const ServiceDetails = ({ dynamicPageItem }) => {
           </p>
           <Link
             to="/"
-            title="book now"
+            title="Book Now"
             className="bg-orange text-white py-3 px-6 rounded-md font-medium"
           >
-            Book Bow
+            Book Now
           </Link>
         </div>
       </div>
@@ -124,14 +125,16 @@ const ServiceDetails = ({ dynamicPageItem }) => {
               </SwiperSlide>
             ))}
         </Swiper>
-        <div className="flex justify-end mt-8">
-          <button className="service-swiper-button-prev focus:outline-none">
-            <FaChevronLeft className="text-orange text-2xl mr-4" />
-          </button>
-          <button className="service-swiper-button-next focus:outline-none">
-            <FaChevronRight className="text-orange text-2xl" />
-          </button>
-        </div>
+        {gallery && gallery.length > 0 && (
+          <div className="flex justify-end mt-8">
+            <button className="service-swiper-button-prev focus:outline-none">
+              <FaChevronLeft className="text-orange text-2xl mr-4" />
+            </button>
+            <button className="service-swiper-button-next focus:outline-none">
+              <FaChevronRight className="text-orange text-2xl" />
+            </button>
+          </div>
+        )}
       </div>
       <div className="max-w-screen-xl mx-auto px-4 mb-20">
         <TitleSection title={`${customFields.title} Services`} />
@@ -145,6 +148,7 @@ const ServiceDetails = ({ dynamicPageItem }) => {
           )}
         </ul>
       </div>
+      <ServiceCTA title={customFields.cTAButtonLabel} />
     </>
   )
 }

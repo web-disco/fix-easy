@@ -23,3 +23,7 @@
 .prose blockquote {
   color: #243e63;
 }
+
+.active {
+  color: #f77e0b;
+}
