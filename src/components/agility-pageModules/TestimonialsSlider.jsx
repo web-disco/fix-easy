@@ -4,12 +4,12 @@ import { graphql, useStaticQuery } from "gatsby"
 import { AgilityImage } from "@agility/gatsby-image-agilitycms"
 import { FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { Swiper, SwiperSlide } from "swiper/react"
-import SwiperCore, { Navigation } from "swiper"
+import SwiperCore, { Navigation, Autoplay } from "swiper"
 import "swiper/components/navigation/navigation.min.css"
 import "swiper/swiper-bundle.min.css"
 
 // install Swiper modules
-SwiperCore.use([Navigation])
+SwiperCore.use([Navigation, Autoplay])
 
 const TestimonialsSlider = ({ module }) => {
   // get module fields
@@ -45,13 +45,17 @@ const TestimonialsSlider = ({ module }) => {
   const testimonials = data.allAgilityTestimonial.nodes
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 mb-20">
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8 mb-20">
       <TitleSection
         subTitle={customFields.subTitle}
         title={customFields.title}
       />
       <Swiper
         spaceBetween={20}
+        loop={true}
+        autoplay={{
+          delay: 6000,
+        }}
         navigation={{
           nextEl: ".testimonial-swiper-button-next",
           prevEl: ".testimonial-swiper-button-prev",

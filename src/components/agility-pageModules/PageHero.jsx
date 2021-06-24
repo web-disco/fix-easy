@@ -7,7 +7,7 @@ const PageHero = ({ module }) => {
   return (
     <>
       <div className="bg-lighterGrey py-28">
-        <div className="max-w-screen-xl mx-auto text-center px-4">
+        <div className="max-w-screen-xl mx-auto text-center px-4 md:px-8">
           <h1 className="text-4xl font-bold mb-4 text-darkGrey">
             {customFields.title}
           </h1>

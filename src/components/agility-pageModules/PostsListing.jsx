@@ -47,14 +47,14 @@ const PostsListing = () => {
 
   // set up state active category for initial load
   const [activeCategory, setActiveCategory] = useState(
-    categories.[0].customFields.title
+    categories[0].customFields.title
   )
 
   console.log(activeCategory)
 
-    const results = posts.filter(
-      post => post.customFields.category_TextField === activeCategory
-    )
+  const results = posts.filter(
+    post => post.customFields.category_TextField === activeCategory
+  )
 
   // function to truncate text
   const truncate = (str, num) => {
@@ -64,51 +64,59 @@ const PostsListing = () => {
     return str
   }
 
-  if (posts.length <= 0) {
-    return <p>sorry... no posts yet!</p>
-  }
-
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-8">
       <div>
-        <select onChange={(e) => setActiveCategory(e.target.value)}>
+        <select
+          onChange={e => setActiveCategory(e.target.value)}
+          className="form-select bg-orange text-white rounded-md border-orange focus:outline-none focus-visible:outline-none mb-8 block w-full sm:w-72"
+        >
           {categories.map((category, index) => (
-            <option key={index} value={category.customFields.title}>{category.customFields.title}</option>
+            <option key={index} value={category.customFields.title}>
+              {category.customFields.title}
+            </option>
           ))}
         </select>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {results.length > 0 ? results.map((post, index) => {
-  const excerpt = truncate(post.customFields.content, 80)
-  return (
-    <div key={index}>
-      <Link to={post.sitemapNode.path}>
-        <AgilityImage
-          image={post.customFields.image}
-          className="rounded-md mb-2"
-          layout="fullWidth"
-        />
-        <span className="text-sm text-lightGrey">
-          {new Date(post.customFields.date).toLocaleDateString()}
-        </span>
-        <h3 className="text-xl font-bold text-darkGrey">
-          {post.customFields.title}
-        </h3>
-        <div dangerouslySetInnerHTML={renderHTML(excerpt)} />
-      </Link>
-      <Link
-        to={post.sitemapNode.path}
-        title={post.customFields.title}
-        className="font-bold text-orange border-b-3 border-orange pb-1 text-sm"
-      >
-        Read More
-      </Link>
-    </div>
-  )
-        }) : (
-          <p>no posts</p>
-        )}
-      </div>
+      {results.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {results?.map((post, index) => {
+            const excerpt = truncate(post.customFields.content, 80)
+            return (
+              <div key={index}>
+                <Link to={post.sitemapNode.path}>
+                  <AgilityImage
+                    image={post.customFields.image}
+                    className="rounded-md mb-2"
+                    layout="fullWidth"
+                  />
+                  <span className="text-sm text-lightGrey my-2 block">
+                    {new Date(post.customFields.date).toLocaleDateString()}
+                  </span>
+                  <h3 className="text-xl font-bold text-darkGrey">
+                    {post.customFields.title}
+                  </h3>
+                  <div
+                    dangerouslySetInnerHTML={renderHTML(excerpt)}
+                    className="mb-2"
+                  />
+                </Link>
+                <Link
+                  to={post.sitemapNode.path}
+                  title={post.customFields.title}
+                  className="font-bold text-orange border-b-3 border-orange pb-1 text-sm"
+                >
+                  Read More
+                </Link>
+              </div>
+            )
+          })}
+        </div>
+      ) : (
+        <div className="text-center py-20">
+          <h3 className="text-2xl">No posts available in this category.</h3>
+        </div>
+      )}
     </div>
   )
 }

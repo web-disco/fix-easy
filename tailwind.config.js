@@ -13,6 +13,9 @@ module.exports = {
     },
     height: {
       "500": "500px",
+      "450": "450px",
+      "400": "400px",
+      "350": "350px",
       "300": "300px",
       full: "100%",
     },
@@ -21,6 +24,10 @@ module.exports = {
       "2": "2px",
       "3": "3px",
       "4": "4px",
+      "5": "5px",
+      "6": "6px",
+      "7": "7px",
+      "8": "8px",
     },
     colors: {
       transparent: "transparent",
@@ -69,5 +76,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("@graxmonzo/tailwind-caret-color"),
+  ],
 }

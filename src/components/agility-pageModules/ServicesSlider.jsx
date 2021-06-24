@@ -2,13 +2,13 @@ import React from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import TitleSection from "../common/TitleSection"
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa"
-import SwiperCore, { Navigation } from "swiper"
-import "swiper/components/navigation/navigation.min.css"
+import SwiperCore, { Navigation, Autoplay } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/components/navigation/navigation.min.css"
 import "swiper/swiper-bundle.min.css"
 
 // install Swiper modules
-SwiperCore.use([Navigation])
+SwiperCore.use([Navigation, Autoplay])
 
 const ServicesSlider = ({ module }) => {
   // module fields
@@ -37,13 +37,17 @@ const ServicesSlider = ({ module }) => {
   const services = data.services.nodes
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 mb-20" id="services">
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8 mb-20" id="services">
       <TitleSection
         subTitle={customFields.subTitle}
         title={customFields.title}
       />
       <Swiper
         spaceBetween={40}
+        autoplay={{
+          delay: 3500,
+        }}
+        loop={true}
         navigation={{
           nextEl: ".services-swiper-button-next",
           prevEl: ".services-swiper-button-prev",
@@ -52,7 +56,7 @@ const ServicesSlider = ({ module }) => {
           640: {
             slidesPerView: 1,
           },
-          768: {
+          767: {
             slidesPerView: 2,
           },
           991: {
@@ -61,12 +65,13 @@ const ServicesSlider = ({ module }) => {
         }}
       >
         {services.map((service, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="text-center md:text-left">
             <Link to={`/services/${service.customFields.uRL}`}>
               <div>
                 <img
                   src={service.customFields.icon.url}
                   alt={service.customFields.icon.label}
+                  className="mx-auto md:mx-0"
                 />
                 <h4 className="text-darkGrey font-bold my-2">
                   {service.customFields.title}

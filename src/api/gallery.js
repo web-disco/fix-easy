@@ -10,10 +10,23 @@ export default async function handler(req, res) {
   // get gallery id
   const id = req.query.id
 
-  // fetch gallery
-  const gallery = await api.getGallery({
-    galleryID: id,
-  })
+  if (!id) {
+    res
+      .status(400)
+      .json({
+        error: "No gallery id sent - add a query param for the gallery id",
+      })
+  }
 
-  res.status(200).json(gallery)
+  try {
+    // fetch gallery
+    const gallery = await api.getGallery({
+      galleryID: id,
+    })
+
+    res.status(200).json(gallery)
+  } catch (err) {
+    console.log({ err })
+    res.status(500).json({ err })
+  }
 }

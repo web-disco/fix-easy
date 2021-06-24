@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
+import { FaChevronDown, FaChevronUp } from "react-icons/fa"
 
 const SiteHeader = ({ languageCode, isMultiLanguage }) => {
   // graphql query to fetch our sitemap & header data
@@ -71,7 +72,7 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
   }
   return (
     <>
-      <header className="relative w-full mx-auto bg-white px-4 md:px-8 py-4">
+      <header className="relative w-full mx-auto bg-white px-4 md:px-8 py-4 shadow-xl">
         <div className="max-w-screen-xl mx-auto">
           <div className="flex justify-between items-center">
             <Link to="/" title={header.siteName}>
@@ -100,10 +101,15 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                         </Link>
                       ) : (
                         <span
-                          className="text-lightGrey font-bold cursor-pointer hover:text-orange"
+                          className="text-lightGrey font-bold cursor-pointer hover:text-orange flex items-center"
                           onClick={() => setOpen(!open)}
                         >
                           {navitem.menuText}
+                          {open ? (
+                            <FaChevronUp className="ml-2" />
+                          ) : (
+                            <FaChevronDown className="ml-2" />
+                          )}
                         </span>
                       )}
                       {navitem.menuText === "Services" ? (

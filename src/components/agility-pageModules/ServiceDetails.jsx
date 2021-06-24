@@ -63,7 +63,7 @@ const ServiceDetails = ({ dynamicPageItem }) => {
   return (
     <>
       <div className="bg-lighterGrey py-28">
-        <div className="max-w-screen-xl mx-auto text-center px-4">
+        <div className="max-w-screen-xl mx-auto text-center px-4 md:px-8">
           <h1 className="text-4xl font-bold my-2">{customFields.title}</h1>
           <p className="max-w-md mx-auto mb-8">
             {customFields.shortDescription}
@@ -125,16 +125,14 @@ const ServiceDetails = ({ dynamicPageItem }) => {
               </SwiperSlide>
             ))}
         </Swiper>
-        {gallery && gallery.length > 0 && (
-          <div className="flex justify-end mt-8">
-            <button className="service-swiper-button-prev focus:outline-none">
-              <FaChevronLeft className="text-orange text-2xl mr-4" />
-            </button>
-            <button className="service-swiper-button-next focus:outline-none">
-              <FaChevronRight className="text-orange text-2xl" />
-            </button>
-          </div>
-        )}
+        <div className="flex justify-end mt-8">
+          <button className="service-swiper-button-prev focus:outline-none">
+            <FaChevronLeft className="text-orange text-2xl mr-4" />
+          </button>
+          <button className="service-swiper-button-next focus:outline-none">
+            <FaChevronRight className="text-orange text-2xl" />
+          </button>
+        </div>
       </div>
       <div className="max-w-screen-xl mx-auto px-4 mb-20">
         <TitleSection title={`${customFields.title} Services`} />

@@ -40,7 +40,7 @@ const TextBlockWithImage = ({ module }) => {
 
   return (
     <div className="relative">
-      <div className="flex flex-col md:flex-row justify-between max-w-screen-xl px-4 mx-auto py-12 md:py-18 items-center">
+      <div className="flex flex-col md:flex-row justify-between max-w-screen-xl px-4 md:px-8 mx-auto py-12 md:py-18 items-center">
         <div className="md:w-6/12 flex-shrink-0 relative">
           {customFields.primaryButton ? (
             <Link to={customFields.primaryButton.href}>
