@@ -11,6 +11,10 @@ module.exports = {
         xl: "1200px",
       },
     },
+    inset: {
+      "0": "0px",
+      "18": "4rem",
+    },
     height: {
       "500": "500px",
       "450": "450px",

@@ -157,12 +157,6 @@ exports.createResolvers = args => {
     agilityPost: {
       // get the sitemap node that represents this item ( i.e. /blog/my-blog-post )
       sitemapNode: agility.getDynamicPageItemSitemapNode(),
-
-      // get the category
-      // linkedContent_agilityCategory: agility.getLinkedContentItem({
-      //   type: "agilityCategory",
-      //   linkedContentFieldName: "category",
-      // }),
     },
     // on the 'agilityService' node type
     agilityService: {
@@ -173,6 +167,20 @@ exports.createResolvers = args => {
       linkedContent_agilityServiceDetails: agility.getLinkedContentList({
         type: "agilityServiceDetail",
         linkedContentFieldName: "serviceDetails",
+      }),
+    },
+    // on the 'agilityMap' node type
+    agilityMap: {
+      linkedContent_agilityLocations: agility.getLinkedContentList({
+        type: "agilityLocation",
+        linkedContentFieldName: "locations",
+      }),
+    },
+    // on the 'agilitySiteFooter' node type
+    agilitySiteFooter: {
+      linkedContent_agilityLink: agility.getLinkedContentList({
+        type: "agilityLink",
+        linkedContentFieldName: "column1Links",
       }),
     },
   }

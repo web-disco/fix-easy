@@ -11,6 +11,7 @@ const ServiceCTA = ({ title }) => {
           href="https://www.google.com"
           title={title}
           target="_blank"
+          rel="noreferrer"
           className="bg-white py-3 px-6 rounded-md text-orange pb-4 font-medium"
         >
           {title}

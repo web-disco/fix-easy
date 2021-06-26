@@ -50,8 +50,6 @@ const PostsListing = () => {
     categories[0].customFields.title
   )
 
-  console.log(activeCategory)
-
   const results = posts.filter(
     post => post.customFields.category_TextField === activeCategory
   )
@@ -69,7 +67,7 @@ const PostsListing = () => {
       <div>
         <select
           onChange={e => setActiveCategory(e.target.value)}
-          className="form-select bg-orange text-white rounded-md border-orange focus:outline-none focus-visible:outline-none mb-8 block w-full sm:w-72"
+          className="form-select bg-orange text-lighterGrey rounded-md border-orange focus:outline-none focus-visible:outline-none mb-8 block w-full sm:w-72"
         >
           {categories.map((category, index) => (
             <option key={index} value={category.customFields.title}>

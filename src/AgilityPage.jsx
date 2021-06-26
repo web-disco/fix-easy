@@ -18,6 +18,40 @@ export const query = graphql`
     ) {
       itemJson
     }
+    agilitySiteFooter {
+      linkedContent_agilityLink {
+        customFields {
+          link {
+            text
+            href
+          }
+        }
+      }
+      customFields {
+        callToAction {
+          href
+          target
+          text
+        }
+        column1Title
+        column2Title
+        facebook {
+          href
+          target
+          text
+        }
+        instagram {
+          href
+          target
+          text
+        }
+        twitter {
+          href
+          target
+          text
+        }
+      }
+    }
   }
 `
 const AgilityPage = ({ pageContext, data }) => {
@@ -51,7 +85,7 @@ const AgilityPage = ({ pageContext, data }) => {
         <main className="flex-grow">
           <AgilityPageTemplate {...viewModel} />
         </main>
-        {/* <SiteFooter /> */}
+        <SiteFooter footer={data.agilitySiteFooter} />
       </div>
     </>
   )

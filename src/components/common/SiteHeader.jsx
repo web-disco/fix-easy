@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import { FaChevronDown, FaChevronUp } from "react-icons/fa"
+import { FaChevronDown, FaChevronUp, FaBars, FaTimes } from "react-icons/fa"
 
 const SiteHeader = ({ languageCode, isMultiLanguage }) => {
   // graphql query to fetch our sitemap & header data
@@ -37,8 +37,21 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
     }
   `)
 
-  // open / close mobile nav
-  const [open, setOpen] = useState(false)
+  // open / close menus
+  const [openDropdown, setOpenDropdown] = useState(false)
+  const [openMenu, setOpenMenu] = useState(false)
+  const [openMobileMenu, setOpenMobileMenu] = useState(false)
+
+  // functions that help with menu
+  typeof window !== "undefined" &&
+    window.addEventListener("resize", function(event) {
+      var w = document.documentElement.clientWidth
+      // Display result inside a div element
+      if (w >= 991) {
+        setOpenMenu(false)
+        setOpenMobileMenu(false)
+      }
+    })
 
   // get header
   const header = data.siteHeader.customFields
@@ -102,10 +115,10 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                       ) : (
                         <span
                           className="text-lightGrey font-bold cursor-pointer hover:text-orange flex items-center"
-                          onClick={() => setOpen(!open)}
+                          onClick={() => setOpenDropdown(!openDropdown)}
                         >
                           {navitem.menuText}
-                          {open ? (
+                          {openDropdown ? (
                             <FaChevronUp className="ml-2" />
                           ) : (
                             <FaChevronDown className="ml-2" />
@@ -114,10 +127,10 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                       )}
                       {navitem.menuText === "Services" ? (
                         <ul
-                          className={`absolute z-50 bg-white w-60 px-3 ${
-                            open ? `block` : `hidden`
+                          className={`absolute z-50 bg-white w-60 py-3 px-3 ${
+                            openDropdown ? `block` : `hidden`
                           }`}
-                          onMouseLeave={() => setOpen(false)}
+                          onMouseLeave={() => setOpenDropdown(false)}
                         >
                           {services.map((service, index) => (
                             <li className="my-2" key={index}>
@@ -138,7 +151,61 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                 })}
               </ul>
             </nav>
+            <button
+              onClick={() => setOpenMenu(!openMenu)}
+              className="block md:hidden"
+            >
+              {openMenu ? (
+                <FaTimes className="text-lightGrey text-3xl" />
+              ) : (
+                <FaBars className="text-lightGrey text-3xl" />
+              )}
+            </button>
           </div>
+        </div>
+        <div
+          className={`absolute top-18 left-0 bg-white w-full z-50 shadow-xl py-3 ${
+            openMenu ? `block` : `hidden`
+          }`}
+        >
+          <ul>
+            {links.map((navitem, index) => {
+              return (
+                <li className="py-2 list-none">
+                  {!navitem.isFolder ? (
+                    <Link
+                      to={navitem.path}
+                      className="font-bold text-lightGrey hover:text-orange px-4"
+                    >
+                      {navitem.menuText}
+                    </Link>
+                  ) : (
+                    <>
+                      <a
+                        onClick={() => setOpenMobileMenu(!openMobileMenu)}
+                        className="px-4 flex text-lightGrey font-bold hover:text-orange cursor-pointer items-center"
+                      >
+                        {navitem.title} <FaChevronDown className="ml-2" />
+                      </a>
+                      <ul
+                        className={`${
+                          openMobileMenu ? `block` : `hidden`
+                        } mt-3 px-8 py-3 text-sm font-medium text-lightGrey bg-lighterGrey`}
+                      >
+                        {services.map((service, index) => (
+                          <li className="my-3 first:mt-0 last:mb-0 hover:ml-2 hover:text-orange">
+                            <Link to={service.sitemapNode.path}>
+                              {service.sitemapNode.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
         </div>
       </header>
     </>

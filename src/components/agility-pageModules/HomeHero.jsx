@@ -7,7 +7,7 @@ const HomeHero = ({ module }) => {
   return (
     <div
       style={{ backgroundImage: `url('${customFields.backgroundImage.url}')` }}
-      className="h-350 sm:h-400 md:h-500 bg-center bg-cover bg-no-repeat relative"
+      className="h-350 sm:h-400 md:h-500 bg-center bg-cover bg-no-repeat relative z-10"
     >
       <div className="absolute w-full h-full bg-darkGrey bg-opacity-50">
         <div className="max-w-screen-xl mx-auto px-4 md:px-8 flex flex-col h-full justify-center">
@@ -18,7 +18,7 @@ const HomeHero = ({ module }) => {
           <Link
             to={customFields.button.href}
             title={customFields.button.text}
-            className="bg-orange text-white block max-w-max py-3 px-6 rounded-md font-medium"
+            className="bg-orange text-lighterGrey block max-w-max py-3 px-6 rounded-md font-medium"
           >
             {customFields.button.text}
           </Link>

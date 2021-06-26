@@ -68,13 +68,6 @@ const ServiceDetails = ({ dynamicPageItem }) => {
           <p className="max-w-md mx-auto mb-8">
             {customFields.shortDescription}
           </p>
-          <Link
-            to="/"
-            title="Book Now"
-            className="bg-orange text-white py-3 px-6 rounded-md font-medium"
-          >
-            Book Now
-          </Link>
         </div>
       </div>
       <div className="bg-orange">

@@ -8,6 +8,7 @@ import PageHero from "./PageHero"
 import PostsListing from "./PostsListing"
 import PostDetails from "./PostDetails"
 import ContactBlock from "./ContactBlock"
+import Map from "./Map"
 
 // All of the Agility Page Module Components that are in use in this site need to be imported into this index file.
 // Place Page Modules in allModules array below, passing in a name and the component.
@@ -23,6 +24,7 @@ const allModules = [
   { name: "PostsListing", module: PostsListing },
   { name: "PostDetails", module: PostDetails },
   { name: "ContactBlock", module: ContactBlock },
+  { name: "Map", module: Map },
 ]
 
 export const getModule = moduleName => {

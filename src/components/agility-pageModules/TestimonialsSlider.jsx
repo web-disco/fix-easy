@@ -124,10 +124,10 @@ const TestimonialsSlider = ({ module }) => {
         })}
       </Swiper>
       <div className="flex justify-end mt-8">
-        <button className="testimonial-swiper-button-prev">
+        <button className="testimonial-swiper-button-prev focus:outline-none">
           <FaChevronLeft className="text-orange text-2xl mr-4" />
         </button>
-        <button className="testimonial-swiper-button-next">
+        <button className="testimonial-swiper-button-next focus:outline-none">
           <FaChevronRight className="text-orange text-2xl" />
         </button>
       </div>

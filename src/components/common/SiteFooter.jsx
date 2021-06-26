@@ -1,116 +1,127 @@
 import React from "react"
-import { FaTwitter, FaInstagram, FaSlack, FaYoutube } from "react-icons/fa"
-import agilityLogo from "../../assets/agility-logo.svg"
+import { useStaticQuery, graphql, Link } from "gatsby"
+import { FaInstagram, FaTwitter, FaFacebookSquare } from "react-icons/fa"
 
-/**
- * This footer is not part of the content in the CMS, feel free to remove this for production use.
- */
-
-const SiteFooter = () => {
-  // set up Agility CMS Socials
-  const socials = [
-    {
-      title: "Twitter",
-      url: "https://www.twitter.com/agilitycms",
-      icon: (
-        <FaTwitter className="text-xl md:ml-8 text-primary-500 hover:text-primary-700 transition duration-300" />
-      ),
-    },
-    {
-      title: "Instagram",
-      url: "https://www.instagram.com/agilitycms",
-      icon: (
-        <FaInstagram className="text-xl md:ml-8 text-primary-500 hover:text-primary-700 transition duration-300" />
-      ),
-    },
-    {
-      title: "Slack",
-      url:
-        "https://join.slack.com/t/agilitycms-community/shared_invite/zt-99qlv1hw-tpPOJ99V21Y2omtA_uTcJw",
-      icon: (
-        <FaSlack className="text-xl md:ml-8 text-primary-500 hover:text-primary-700 transition duration-300" />
-      ),
-    },
-    {
-      title: "YouTube",
-      url: "https://www.youtube.com/channel/UCzKjErx94RLTbJctcrIgsDQ",
-      icon: (
-        <FaYoutube className="text-xl md:ml-8 text-primary-500 hover:text-primary-700 transition duration-300" />
-      ),
-    },
-  ]
+const SiteFooter = ({ footer }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      allAgilityService {
+        nodes {
+          sitemapNode {
+            menuText
+            pagePath
+          }
+        }
+      }
+    }
+  `)
+  const services = data.allAgilityService.nodes
+  const date = new Date()
+  const year = date.getFullYear()
   return (
-    <footer className="relative px-8 py-6 md:py-4 mt-8 bg-gray-100">
-      <div className="max-w-screen-xl mx-auto md:flex md:items-center">
-        <div className="text-center mb-4 md:mb-0 md:text-left flex-shrink-0 relative">
+    <>
+      <footer className="bg-lighterGrey px-4 md:px-8 py-8">
+        <div className="grid grid-cols-4 md:grid-cols-3">
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="font-bold text-sm mb-4 text-darkGrey">
+              {footer.customFields.column1Title}
+            </h3>
+            <ul>
+              {services.map(service => (
+                <li className="my-2 last:mb-0">
+                  <Link
+                    to={service.sitemapNode.menuText}
+                    className="text-sm text-darkGrey hover:text-orange"
+                  >
+                    {service.sitemapNode.menuText}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="font-bold text-sm mb-4 text-darkGrey">
+              {footer.customFields.column2Title}
+            </h3>
+            <ul>
+              {footer.linkedContent_agilityLink.map(link => (
+                <li className="my-2">
+                  <Link
+                    to={link.customFields.link.href}
+                    className="text-sm text-darkGrey hover:text-orange"
+                  >
+                    {link.customFields.link.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-8 md:mt-0 col-span-4 md:col-span-1">
+            <Link
+              to={footer.customFields.callToAction.href}
+              className="block w-full text-center mb-8 px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-orange hover:bg-orange focus:outline-none focus:border-orange focus:shadow-outline-indigo transition ease-in-out duration-150"
+            >
+              {footer.customFields.callToAction.text}
+            </Link>
+            <h3 className="font-bold text-sm text-darkGrey mb-4 text-center md:text-left">
+              Stay Connected
+            </h3>
+            <ul className="flex justify-center md:justify-start">
+              <li>
+                {footer.customFields.facebook && (
+                  <Link
+                    to={footer.customFields.facebook.href}
+                    title={footer.customFields.facebook.text}
+                    target={footer.customFields.facebook.target}
+                  >
+                    <FaFacebookSquare className="text-4xl md:text-2xl text-darkGrey mr-4 hover:text-orange" />
+                  </Link>
+                )}
+              </li>
+              <li>
+                {footer.customFields.twitter && (
+                  <Link
+                    to={footer.customFields.twitter.href}
+                    title={footer.customFields.twitter.href}
+                    target={footer.customFields.twitter.target}
+                  >
+                    <FaTwitter className="text-4xl md:text-2xl  text-darkGrey mr-4 hover:text-orange" />
+                  </Link>
+                )}
+              </li>
+              <li>
+                {footer.customFields.instagram && (
+                  <Link
+                    to={footer.customFields.instagram.href}
+                    title={footer.customFields.instagram.href}
+                    target={footer.customFields.instagram.target}
+                  >
+                    <FaInstagram className="text-4xl md:text-2xl  text-darkGrey mr-4 hover:text-orange" />
+                  </Link>
+                )}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      <div className="block md:flex text-center justify-between px-4 md:px-8 text-xs bg-darkGrey text-white py-6">
+        <p className="mb-4 md:mb-0">
+          © {year} Copyright Fix Easy | All Rights Reserved.
+        </p>
+        <p>
+          Website by{" "}
           <a
-            href="https://www.agilitycms.com"
+            href="https://www.webdisco.digital"
+            title="Toronto Web Development"
+            className="hover:text-orange"
             target="_blank"
             rel="noreferrer"
-            title="Agility CMS"
           >
-            <img
-              src={agilityLogo}
-              alt="Agility CMS"
-              width="90"
-              height="24"
-              className="mx-auto"
-            />
+            Web Disco
           </a>
-        </div>
-        <div className="flex-grow mb-4 md:mb-0">
-          <p className="text-center md:text-left text-gray-600 text-xs md:ml-8 md:max-w-3xl">
-            Powered by Agility CMS. This website and materials found on it are
-            for demo purposes. You can use this to preview the content you
-            created on your Agility CMS account.{"\u00A0"}
-            <a
-              href="https://github.com/agilitycms/agilitycms-gatsby-starter"
-              title="View on GitHub"
-              target="_blank"
-              rel="noreferrer"
-              className="text-gray-600 mr-2 border-b border-gray-600"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://help.agilitycms.com/hc/en-us"
-              title="Help Center"
-              target="_blank"
-              rel="noreferrer"
-              className="text-gray-600 mr-1 border-b border-gray-600"
-            >
-              Help Center
-            </a>
-            {"\u00A0"}
-            <a
-              href="https://agilitycms.com/contact-us/chat-sales"
-              title="Contact Us"
-              target="_blank"
-              rel="noreferrer"
-              className="text-gray-600 border-b border-gray-600"
-            >
-              Contact Us
-            </a>
-          </p>
-        </div>
-        <div className="flex-1-grow">
-          <ul className="flex justify-center md:justify-start">
-            {socials.map((social, index) => (
-              <li key={index} className="mx-4 md:mx-0">
-                <a
-                  href={social.url}
-                  title={`Follow Agility CMS on ${social.title}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {social.icon}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </p>
       </div>
-    </footer>
+    </>
   )
 }
 
