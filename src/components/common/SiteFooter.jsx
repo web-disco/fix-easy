@@ -53,7 +53,7 @@ const SiteFooter = ({ footer }) => {
 
   return (
     <>
-      <footer className="bg-lighterGrey px-4 md:px-8 py-4">
+      <footer className="bg-lighterGrey px-4 md:px-8 py-6">
         <div className="grid grid-cols-4 md:grid-cols-3">
           <div className="col-span-2 md:col-span-1">
             <h3 className="font-bold text-sm mb-4 text-darkGrey">
