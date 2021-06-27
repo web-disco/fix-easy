@@ -63,7 +63,7 @@ const SiteFooter = ({ footer }) => {
               {services.map(service => (
                 <li className="my-2 last:mb-0">
                   <Link
-                    to={service.sitemapNode.menuText}
+                    to={service.sitemapNode.pagePath}
                     className="text-sm text-darkGrey hover:text-orange"
                   >
                     {service.sitemapNode.menuText}
