@@ -1,11 +1,19 @@
-import React from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import { FaInstagram, FaTwitter, FaFacebookSquare } from "react-icons/fa"
+import addToMailchimp from "gatsby-plugin-mailchimp"
+import { renderHTML } from "../../agility/utils"
+import {
+  FaInstagram,
+  FaTwitter,
+  FaFacebookSquare,
+  FaChevronRight,
+} from "react-icons/fa"
 
 const SiteFooter = ({ footer }) => {
+  // query for services
   const data = useStaticQuery(graphql`
     query {
-      allAgilityService {
+      allAgilityService(sort: { order: ASC, fields: properties___itemOrder }) {
         nodes {
           sitemapNode {
             menuText
@@ -15,12 +23,37 @@ const SiteFooter = ({ footer }) => {
       }
     }
   `)
+  // get services
   const services = data.allAgilityService.nodes
+
+  // get date
   const date = new Date()
+
+  // get year from date
   const year = date.getFullYear()
+
+  // setup email state
+  const [email, setEmail] = useState("")
+
+  // set up message
+  const [message, setMessage] = useState("")
+
+  // handle submit function
+  const handleSubmit = async e => {
+    e.preventDefault()
+    const result = await addToMailchimp(email)
+    console.log(result)
+    setMessage(result.msg)
+  }
+
+  // handle change function
+  const handleChange = e => {
+    setEmail(e.target.value)
+  }
+
   return (
     <>
-      <footer className="bg-lighterGrey px-4 md:px-8 py-8">
+      <footer className="bg-lighterGrey px-4 md:px-8 py-4">
         <div className="grid grid-cols-4 md:grid-cols-3">
           <div className="col-span-2 md:col-span-1">
             <h3 className="font-bold text-sm mb-4 text-darkGrey">
@@ -57,16 +90,32 @@ const SiteFooter = ({ footer }) => {
             </ul>
           </div>
           <div className="mt-8 md:mt-0 col-span-4 md:col-span-1">
-            <Link
-              to={footer.customFields.callToAction.href}
-              className="block w-full text-center mb-8 px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-orange hover:bg-orange focus:outline-none focus:border-orange focus:shadow-outline-indigo transition ease-in-out duration-150"
-            >
-              {footer.customFields.callToAction.text}
-            </Link>
-            <h3 className="font-bold text-sm text-darkGrey mb-4 text-center md:text-left">
+            <h3 className="font-bold text-sm text-darkGrey mb-4">
+              {footer.customFields.newsletterTitle}
+            </h3>
+            <form className="mb-4" onSubmit={handleSubmit}>
+              <label htmlFor="email" className="flex">
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={handleChange}
+                  placeholder={footer.customFields.newsletterText}
+                  className="w-full rounded-md text-sm border-2 border-darkGrey"
+                />
+                <button className="text-center bg-orange px-3 ml-3 rounded-md">
+                  <FaChevronRight className="text-white" />
+                </button>
+              </label>
+            </form>
+            <p
+              className="form-message"
+              dangerouslySetInnerHTML={renderHTML(message)}
+            />
+            <h3 className="font-bold text-sm text-darkGrey mt-8 mb-4 text-center md:text-left">
               Stay Connected
             </h3>
-            <ul className="flex justify-center md:justify-start">
+            <ul className="flex justify-center md:justify-start mb-6">
               <li>
                 {footer.customFields.facebook && (
                   <Link
@@ -104,7 +153,7 @@ const SiteFooter = ({ footer }) => {
           </div>
         </div>
       </footer>
-      <div className="block md:flex text-center justify-between px-4 md:px-8 text-xs bg-darkGrey text-white py-6">
+      <div className="block md:flex text-center justify-between px-4 md:px-8 text-xs bg-darkGrey text-white py-3">
         <p className="mb-4 md:mb-0">
           © {year} Copyright Fix Easy | All Rights Reserved.
         </p>

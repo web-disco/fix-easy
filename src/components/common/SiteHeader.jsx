@@ -168,7 +168,7 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
             openMenu ? `block` : `hidden`
           }`}
         >
-          <ul>
+          <ul className="z-50">
             {links.map((navitem, index) => {
               return (
                 <li className="py-2 list-none">
@@ -193,7 +193,7 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                         } mt-3 px-8 py-3 text-sm font-medium text-lightGrey bg-lighterGrey`}
                       >
                         {services.map((service, index) => (
-                          <li className="my-3 first:mt-0 last:mb-0 hover:ml-2 hover:text-orange">
+                          <li className="my-3 first:mt-0 last:mb-0 hover:text-orange">
                             <Link to={service.sitemapNode.path}>
                               {service.sitemapNode.title}
                             </Link>

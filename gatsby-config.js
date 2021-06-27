@@ -22,8 +22,15 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-netlify`,
-   `gatsby-plugin-image`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: "gatsby-plugin-mailchimp",
+      options: {
+        endpoint: process.env.MAILCHIMP_ENDPOINT,
+        timeout: 3500,
+      },
+    },
     {
       //the name of the plugin
       resolve: "@agility/gatsby-source-agilitycms",
@@ -58,6 +65,6 @@ module.exports = {
         //the page template that will be used to render Agility CMS pages
         masterPageTemplate: "./src/AgilityPage.jsx",
       },
-    }
+    },
   ],
 }

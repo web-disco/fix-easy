@@ -28,11 +28,8 @@ export const query = graphql`
         }
       }
       customFields {
-        callToAction {
-          href
-          target
-          text
-        }
+        newsletterTitle
+        newsletterText
         column1Title
         column2Title
         facebook {

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-const facebook_pageID = "104123831349280"
+const facebook_pageID = process.env.GATSBY_FACEBOOK_PAGE_ID
 
 const FacebookChat = () => {
   useEffect(() => {
