@@ -5,6 +5,7 @@ import { getPageTemplate } from "./components/agility-pageTemplates"
 import SiteHeader from "./components/common/SiteHeader"
 import SiteFooter from "./components/common/SiteFooter"
 import SEO from "./components/common/SEO"
+import FacebookChat from "./components/facebook-chat/FacebookChat"
 
 //Our query to get the our page data and check for a dynamic page item (agilityItem)
 export const query = graphql`
@@ -86,6 +87,7 @@ const AgilityPage = ({ pageContext, data }) => {
           <AgilityPageTemplate {...viewModel} />
         </main>
         <SiteFooter footer={data.agilitySiteFooter} />
+        <FacebookChat />
       </div>
     </>
   )

@@ -34,8 +34,6 @@ const ServiceDetails = ({ dynamicPageItem }) => {
     getGallery()
   }, [customFields.gallery.galleryid])
 
-  console.log(gallery)
-
   // get services list
   const data = useStaticQuery(graphql`
     query {
