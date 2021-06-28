@@ -63,8 +63,8 @@ const PostsListing = () => {
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-8">
-      <div>
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-8 mb-20">
+      <div className="my-12">
         <select
           onChange={e => setActiveCategory(e.target.value)}
           className="form-select bg-orange text-lighterGrey rounded-md border-orange focus:outline-none focus-visible:outline-none mb-8 block w-full sm:w-72"
@@ -85,12 +85,15 @@ const PostsListing = () => {
                 <Link to={post.sitemapNode.path}>
                   <AgilityImage
                     image={post.customFields.image}
-                    className="rounded-md mb-2"
+                    className="rounded-md mb-4"
                     layout="fullWidth"
                   />
-                  <span className="text-sm text-lightGrey my-2 block">
-                    {new Date(post.customFields.date).toLocaleDateString()}
-                  </span>
+                  <p className="text-sm text-lightGrey my-2 block">
+                    {new Date(post.customFields.date).toLocaleDateString()} —{" "}
+                    <span className="text-orange font-medium">
+                      {post.customFields.category_TextField}
+                    </span>
+                  </p>
                   <h3 className="text-xl font-bold text-darkGrey">
                     {post.customFields.title}
                   </h3>

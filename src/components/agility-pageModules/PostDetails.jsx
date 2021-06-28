@@ -13,7 +13,7 @@ const PostDetails = ({ dynamicPageItem }) => {
         aspectRatio={16 / 9}
       />
       <p className="text-sm text-lightGrey my-2 block">
-        Published: {new Date(customFields.date).toLocaleDateString()} —{" "}
+        {new Date(customFields.date).toLocaleDateString()} —{" "}
         <span className="text-orange font-medium">
           {customFields.category_TextField}
         </span>
@@ -29,6 +29,7 @@ const PostDetails = ({ dynamicPageItem }) => {
         <Link
           to="/blog"
           className="bg-orange text-white max-w-max py-3 px-6 rounded-md font-medium"
+          title="Return To Blog"
         >
           Return To Blog
         </Link>

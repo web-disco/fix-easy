@@ -53,8 +53,8 @@ const SiteFooter = ({ footer }) => {
 
   return (
     <>
-      <footer className="bg-lighterGrey px-4 md:px-8 py-6">
-        <div className="grid grid-cols-4 md:grid-cols-3">
+      <footer className="bg-lighterGrey py-6">
+        <div className="grid grid-cols-4 md:grid-cols-3 max-w-screen-xl mx-auto px-4 md:px-8">
           <div className="col-span-2 md:col-span-1">
             <h3 className="font-bold text-sm mb-4 text-darkGrey">
               {footer.customFields.column1Title}
@@ -82,6 +82,7 @@ const SiteFooter = ({ footer }) => {
                   <Link
                     to={link.customFields.link.href}
                     className="text-sm text-darkGrey hover:text-orange"
+                    title={link.customFields.link.text}
                   >
                     {link.customFields.link.text}
                   </Link>
@@ -103,7 +104,10 @@ const SiteFooter = ({ footer }) => {
                   placeholder={footer.customFields.newsletterText}
                   className="w-full rounded-md text-sm border-2 border-darkGrey"
                 />
-                <button className="text-center bg-orange px-3 ml-3 rounded-md">
+                <button
+                  className="text-center bg-orange px-3 ml-3 rounded-md"
+                  title="Submit"
+                >
                   <FaChevronRight className="text-white" />
                 </button>
               </label>
@@ -153,22 +157,24 @@ const SiteFooter = ({ footer }) => {
           </div>
         </div>
       </footer>
-      <div className="block md:flex text-center justify-between px-4 md:px-8 text-xs bg-darkGrey text-white py-3">
-        <p className="mb-4 md:mb-0">
-          © {year} Copyright Fix Easy | All Rights Reserved.
-        </p>
-        <p>
-          Website by{" "}
-          <a
-            href="https://www.webdisco.digital"
-            title="Toronto Web Development"
-            className="hover:text-orange"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Web Disco
-          </a>
-        </p>
+      <div className="text-xs bg-darkGrey text-white py-6 md:py-3">
+        <div className="max-w-screen-xl mx-auto block md:flex text-center justify-between px-4 md:px-8">
+          <p className="mb-4 md:mb-0">
+            © {year} Copyright Fix Easy | All Rights Reserved.
+          </p>
+          <p>
+            Website by{" "}
+            <a
+              href="https://www.webdisco.digital"
+              title="Toronto Web Development"
+              className="hover:text-orange"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Web Disco
+            </a>
+          </p>
+        </div>
       </div>
     </>
   )

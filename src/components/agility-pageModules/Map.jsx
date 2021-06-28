@@ -39,7 +39,7 @@ const Map = ({ module }) => {
   )
 
   return (
-    <div className="max-w-screen-xl px-4 md:px-8 mb-12" id="locations">
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8 mb-12" id="locations">
       <TitleSection
         title={customFields.title}
         subTitle={customFields.subTitle}

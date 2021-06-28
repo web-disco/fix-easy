@@ -109,6 +109,7 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                         <Link
                           to={navitem.path}
                           className="text-lightGrey font-bold hover:text-orange"
+                          title={navitem.menuText}
                         >
                           {navitem.menuText}
                         </Link>
@@ -116,6 +117,9 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                         <span
                           className="text-lightGrey font-bold cursor-pointer hover:text-orange flex items-center"
                           onClick={() => setOpenDropdown(!openDropdown)}
+                          onKeyDown={() => setOpenDropdown(!openDropdown)}
+                          role="button"
+                          tabIndex={index}
                         >
                           {navitem.menuText}
                           {openDropdown ? (
@@ -126,25 +130,30 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                         </span>
                       )}
                       {navitem.menuText === "Services" ? (
-                        <ul
-                          className={`absolute z-50 bg-white w-60 py-3 px-3 ${
-                            openDropdown ? `block` : `hidden`
-                          }`}
+                        <div
                           onMouseLeave={() => setOpenDropdown(false)}
+                          role="menu"
+                          tabIndex={0}
                         >
-                          {services.map((service, index) => (
-                            <li className="my-2" key={index}>
-                              <Link
-                                to={service.sitemapNode.path}
-                                title={service.sitemapNode.title}
-                                className="text-lightGrey hover:text-orange font-medium"
-                                activeClassName="active"
-                              >
-                                {service.sitemapNode.title}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
+                          <ul
+                            className={`absolute z-50 bg-white w-60 py-3 px-3 ${
+                              openDropdown ? `block` : `hidden`
+                            }`}
+                          >
+                            {services.map((service, index) => (
+                              <li className="my-2" key={index}>
+                                <Link
+                                  to={service.sitemapNode.path}
+                                  title={service.sitemapNode.title}
+                                  className="text-lightGrey hover:text-orange font-medium"
+                                  activeClassName="active"
+                                >
+                                  {service.sitemapNode.title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       ) : null}
                     </li>
                   )
@@ -153,6 +162,7 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
             </nav>
             <button
               onClick={() => setOpenMenu(!openMenu)}
+              onKeyDown={() => setOpenMenu(!openMenu)}
               className="block md:hidden"
             >
               {openMenu ? (
@@ -176,17 +186,19 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                     <Link
                       to={navitem.path}
                       className="font-bold text-lightGrey hover:text-orange px-4"
+                      title={navitem.menuText}
                     >
                       {navitem.menuText}
                     </Link>
                   ) : (
                     <>
-                      <a
+                      <button
                         onClick={() => setOpenMobileMenu(!openMobileMenu)}
+                        onKeyDown={() => setOpenMobileMenu(!openMobileMenu)}
                         className="px-4 flex text-lightGrey font-bold hover:text-orange cursor-pointer items-center"
                       >
                         {navitem.title} <FaChevronDown className="ml-2" />
-                      </a>
+                      </button>
                       <ul
                         className={`${
                           openMobileMenu ? `block` : `hidden`
@@ -194,7 +206,10 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                       >
                         {services.map((service, index) => (
                           <li className="my-3 first:mt-0 last:mb-0 hover:text-orange">
-                            <Link to={service.sitemapNode.path}>
+                            <Link
+                              to={service.sitemapNode.path}
+                              title={service.sitemapNode.title}
+                            >
                               {service.sitemapNode.title}
                             </Link>
                           </li>

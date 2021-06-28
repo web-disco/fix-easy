@@ -6,7 +6,12 @@ const SEO = ({ title, description, keywords, ogImage }) => {
     <Helmet>
       <html lang="en" />
       <meta charset="utf-8" />
-      <title>{`${title} | Fix Easy - Phone Repair, TV Mounting, Security Camera's & More`}</title>
+      <title>{`
+      ${
+        title === "Home"
+          ? "Fix Easy - Phone Repair, TV Mounting, Security Camera's & More"
+          : `${title} | Fix Easy - Phone Repair, TV Mounting, Security Camera's & More`
+      }`}</title>
       <meta name="generator" content="Agility CMS" />
       <meta name="agility_timestamp" content={new Date().toLocaleString()} />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />

@@ -72,6 +72,8 @@ const ServicesSlider = ({ module }) => {
                   src={service.customFields.icon.url}
                   alt={service.customFields.icon.label}
                   className="mx-auto md:mx-0"
+                  width="100"
+                  height="100"
                 />
                 <h4 className="text-darkGrey font-bold my-2">
                   {service.customFields.title}
@@ -85,10 +87,16 @@ const ServicesSlider = ({ module }) => {
         ))}
       </Swiper>
       <div className="flex justify-end mt-8">
-        <button className="services-swiper-button-prev focus:outline-none">
+        <button
+          className="services-swiper-button-prev focus:outline-none"
+          title="Previous Slide"
+        >
           <FaChevronLeft className="text-orange text-2xl mr-4" />
         </button>
-        <button className="services-swiper-button-next focus:outline-none">
+        <button
+          className="services-swiper-button-next focus:outline-none"
+          title="Next Slide"
+        >
           <FaChevronRight className="text-orange text-2xl" />
         </button>
       </div>

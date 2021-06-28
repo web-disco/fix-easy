@@ -54,7 +54,10 @@ const Form = ({ services }) => {
             rows="4"
           />
         </label>
-        <button className="bg-orange text-lighterGrey block max-w-max py-3 px-6 rounded-md font-medium">
+        <button
+          className="bg-orange text-lighterGrey block max-w-max py-3 px-6 rounded-md font-medium"
+          title="Submit"
+        >
           Submit
         </button>
       </form>

@@ -117,10 +117,16 @@ const ServiceDetails = ({ dynamicPageItem }) => {
             ))}
         </Swiper>
         <div className="flex justify-end mt-8">
-          <button className="service-swiper-button-prev focus:outline-none">
+          <button
+            className="service-swiper-button-prev focus:outline-none"
+            title="Previous Slide"
+          >
             <FaChevronLeft className="text-orange text-2xl mr-4" />
           </button>
-          <button className="service-swiper-button-next focus:outline-none">
+          <button
+            className="service-swiper-button-next focus:outline-none"
+            title="Next Slide"
+          >
             <FaChevronRight className="text-orange text-2xl" />
           </button>
         </div>
