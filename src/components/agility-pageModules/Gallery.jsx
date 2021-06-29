@@ -33,8 +33,8 @@ const Gallery = ({ module }) => {
   // // loading gallery
   if (!data) {
     return (
-      <div className="max-w-screen-xl px-4 md:px-8 mx-auto">
-        <ImSpinner className="animate-spin text-4xl" />
+      <div className="max-w-screen-xl px-4 md:px-8 mx-auto text-center py-20">
+        <ImSpinner className="animate-spin text-4xl text-orange" />
       </div>
     )
   }
@@ -43,15 +43,17 @@ const Gallery = ({ module }) => {
     <div className="max-w-screen-xl px-4 md:px-8 mx-auto my-12">
       <SimpleReactLightbox>
         <SRLWrapper>
-          {data.media.map((image, index) => (
-            <a href={image.url} key={index}>
-              <AgilityImage
-                image={image}
-                layout="fullWidth"
-                className="rounded-md"
-              />
-            </a>
-          ))}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+            {data.media.map((image, index) => (
+              <a href={image.url} key={index}>
+                <AgilityImage
+                  image={image}
+                  layout="fullWidth"
+                  className="rounded-md"
+                />
+              </a>
+            ))}
+          </div>
         </SRLWrapper>
       </SimpleReactLightbox>
     </div>
