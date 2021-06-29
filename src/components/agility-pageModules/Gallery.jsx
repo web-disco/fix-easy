@@ -25,12 +25,12 @@ const Gallery = ({ module }) => {
   if (error) {
     return (
       <div className="max-w-screen-xl px-4 md:px-8 mx-auto text-center py-20">
-        <p>We're sorry, we could not load gallery...</p>
+        <p className="text-4xl">We're sorry, we could not load gallery...</p>
       </div>
     )
   }
 
-  // // loading gallery
+  // loading gallery
   if (!data) {
     return (
       <div className="max-w-screen-xl px-4 md:px-8 mx-auto text-center py-20">

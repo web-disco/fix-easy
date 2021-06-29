@@ -89,6 +89,7 @@ const ServiceDetails = ({ dynamicPageItem }) => {
       <div className="max-w-screen-xl mx-auto px-4 mb-8">
         <Swiper
           spaceBetween={40}
+          loop={true}
           navigation={{
             nextEl: ".service-swiper-button-next",
             prevEl: ".service-swiper-button-prev",
