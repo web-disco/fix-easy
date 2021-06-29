@@ -78,9 +78,9 @@ const ServicesSlider = ({ module }) => {
                   width="100"
                   height="100"
                 />
-                <h4 className="text-darkGrey font-bold my-2">
+                <p className="text-darkGrey font-bold my-2">
                   {service.customFields.title}
-                </h4>
+                </p>
                 <p className="text-lightGrey">
                   {service.customFields.shortDescription}
                 </p>
