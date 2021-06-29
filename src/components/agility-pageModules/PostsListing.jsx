@@ -40,7 +40,7 @@ const PostsListing = () => {
   `)
 
   // get posts
-  const posts = data.posts.nodes
+  const posts = data.posts?.nodes
 
   // get categories
   const categories = data.categories.nodes
