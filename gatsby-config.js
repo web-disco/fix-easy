@@ -66,5 +66,17 @@ module.exports = {
         masterPageTemplate: "./src/AgilityPage.jsx",
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Fix Easy`,
+        short_name: `Fix Easy`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#f77e0b`,
+        display: `standalone`,
+      },
+    },
+    `gatsby-plugin-offline`,
   ],
 }
