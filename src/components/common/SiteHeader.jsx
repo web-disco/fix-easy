@@ -83,7 +83,8 @@ const SiteHeader = () => {
                 src={header.logo.url}
                 alt={header.logo.label}
                 title={header.siteName}
-                style={{ width: "150px" }}
+                width="150"
+                height="45"
               />
             </Link>
             <nav className="hidden md:block">
@@ -153,6 +154,7 @@ const SiteHeader = () => {
               onClick={() => setOpenMenu(!openMenu)}
               onKeyDown={() => setOpenMenu(!openMenu)}
               className="block md:hidden"
+              name="toggle"
             >
               {openMenu ? (
                 <FaTimes className="text-lightGrey text-3xl" />

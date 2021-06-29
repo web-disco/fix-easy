@@ -161,6 +161,7 @@ const SiteFooter = () => {
                     href={footer.customFields.facebook.href}
                     title={footer.customFields.facebook.text}
                     target={footer.customFields.facebook.target}
+                    rel="noreferrer"
                   >
                     <FaFacebookSquare className="text-4xl md:text-2xl text-darkGrey mr-4 hover:text-orange" />
                   </a>
@@ -172,6 +173,7 @@ const SiteFooter = () => {
                     href={footer.customFields.twitter.href}
                     title={footer.customFields.twitter.href}
                     target={footer.customFields.twitter.target}
+                    rel="noreferrer"
                   >
                     <FaTwitter className="text-4xl md:text-2xl  text-darkGrey mr-4 hover:text-orange" />
                   </a>
@@ -183,6 +185,7 @@ const SiteFooter = () => {
                     href={footer.customFields.instagram.href}
                     title={footer.customFields.instagram.href}
                     target={footer.customFields.instagram.target}
+                    rel="noreferrer"
                   >
                     <FaInstagram className="text-4xl md:text-2xl  text-darkGrey mr-4 hover:text-orange" />
                   </a>
