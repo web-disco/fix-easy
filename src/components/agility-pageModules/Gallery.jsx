@@ -43,7 +43,7 @@ const Gallery = ({ module }) => {
     <div className="max-w-screen-xl px-4 md:px-8 mx-auto my-12">
       <SimpleReactLightbox>
         <SRLWrapper>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             {data.media.map((image, index) => (
               <a href={image.url} key={index}>
                 <AgilityImage
