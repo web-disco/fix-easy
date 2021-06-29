@@ -153,7 +153,7 @@ const SiteHeader = () => {
               onClick={() => setOpenMenu(!openMenu)}
               onKeyDown={() => setOpenMenu(!openMenu)}
               className="block md:hidden"
-              name="toggle"
+              aria-label="toggle"
             >
               {openMenu ? (
                 <FaTimes className="text-lightGrey text-3xl" />
