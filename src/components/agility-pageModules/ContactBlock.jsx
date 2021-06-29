@@ -20,7 +20,7 @@ const ContactBlock = ({ module }) => {
   const services = data.allAgilityService.nodes
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 md:px-8 py-12">
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8 pb-12">
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="mb-12 md:mb-0">
           <p className="text-lightGrey mb-4">{customFields.text}</p>
