@@ -9,7 +9,7 @@ const Form = ({ services }) => {
           <input
             type="text"
             required
-            className="form-input block w-full rounded-md"
+            className="form-input block w-full rounded-md border-2 border-darkGrey"
           />
         </label>
         <label htmlFor="Last Name" className="text-lightGrey">
@@ -17,7 +17,7 @@ const Form = ({ services }) => {
           <input
             type="text"
             required
-            className="form-input block w-full rounded-md"
+            className="form-input block w-full rounded-md border-2 border-darkGrey"
           />
         </label>
         <label htmlFor="Phone Number" className="text-lightGrey">
@@ -25,7 +25,7 @@ const Form = ({ services }) => {
           <input
             type="text"
             required
-            className="form-input block w-full text-lightGrey rounded-md"
+            className="form-input block w-full text-lightGrey rounded-md border-2 border-darkGrey"
           />
         </label>
         <label htmlFor="Email" className="text-lightGrey">
@@ -33,12 +33,15 @@ const Form = ({ services }) => {
           <input
             type="text"
             required
-            className="form-input block w-full rounded-md"
+            className="form-input block w-full rounded-md border-2 border-darkGrey"
           />
         </label>
         <label htmlFor="Service" className="col-span-2 text-lightGrey">
           I'm interested in...
-          <select className="form-select block w-full rounded-md" required>
+          <select
+            className="form-select block w-full rounded-md border-2 border-darkGrey"
+            required
+          >
             <option selected>Select a service</option>
             {services.map(service => (
               <option value={service.customFields.title}>
@@ -50,7 +53,7 @@ const Form = ({ services }) => {
         <label htmlFor="Message" className="col-span-2 text-lightGrey">
           Anything else we should know?
           <textarea
-            className="form-textarea block w-full rounded-md"
+            className="form-textarea block w-full rounded-md border-2 border-darkGrey"
             rows="4"
           />
         </label>
