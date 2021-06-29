@@ -154,10 +154,10 @@ exports.createResolvers = args => {
   // here we use resolvers to resolve the data we need for linked content
   const resolvers = {
     // on the 'agilityPost' node type
-    agilityPost: {
-      // get the sitemap node that represents this item ( i.e. /blog/my-blog-post )
-      sitemapNode: agility.getDynamicPageItemSitemapNode(),
-    },
+    // agilityPost: {
+    //   // get the sitemap node that represents this item ( i.e. /blog/my-blog-post )
+    //   sitemapNode: agility.getDynamicPageItemSitemapNode(),
+    // },
     // on the 'agilityService' node type
     agilityService: {
       // get the sitemap node that represents this item ( i.e. /services/phone-repair )
