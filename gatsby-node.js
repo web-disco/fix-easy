@@ -68,18 +68,16 @@ exports.sourceNodes = async (args, configOptions) => {
     })
 
     await createNode({
-      id: createNodeId(`agilityGlobalHeader-0-0`),
+      id: createNodeId(`agilitypost-0-0`),
       parent: null,
       children: [],
-      languageCode: "en-us",
-      itemid: 0,
-      contentID: 0,
-      customFields: { siteName: "x" },
-      properties: { referenceName: "globalheaderx" },
+      languageCode: "z",
+      itemID: 0,
+      itemJson: "",
       internal: {
-        type: "agilityGlobalHeader",
+        type: "agilitypost",
         content: "",
-        contentDigest: "agilityGlobalHeader",
+        contentDigest: "agilitypost",
       },
     })
 
@@ -154,10 +152,10 @@ exports.createResolvers = args => {
   // here we use resolvers to resolve the data we need for linked content
   const resolvers = {
     // on the 'agilityPost' node type
-    agilityPost: {
-      // get the sitemap node that represents this item ( i.e. /blog/my-blog-post )
-      sitemapNode: agility.getDynamicPageItemSitemapNode(),
-    },
+    // agilityPost: {
+    //   // get the sitemap node that represents this item ( i.e. /blog/my-blog-post )
+    //   sitemapNode: agility.getDynamicPageItemSitemapNode(),
+    // },
     // on the 'agilityService' node type
     agilityService: {
       // get the sitemap node that represents this item ( i.e. /services/phone-repair )
