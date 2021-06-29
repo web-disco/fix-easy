@@ -5,7 +5,7 @@ import { FaChevronRight } from "react-icons/fa"
 const PageHero = ({ module }) => {
   const { customFields } = module
   return (
-    <>
+    <div className="mb-12">
       <div className="bg-lighterGrey py-20 md:py-28">
         <div className="max-w-screen-xl mx-auto text-center px-4 md:px-8">
           <h1 className="text-4xl font-bold mb-4 text-darkGrey">
@@ -30,7 +30,7 @@ const PageHero = ({ module }) => {
           </Link>
         </div>
       )}
-    </>
+    </div>
   )
 }
 
