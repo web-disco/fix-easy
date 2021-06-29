@@ -83,8 +83,7 @@ const SiteHeader = () => {
                 src={header.logo.url}
                 alt={header.logo.label}
                 title={header.siteName}
-                width="150"
-                height="45"
+                style={{ width: "150px", height: "45px" }}
               />
             </Link>
             <nav className="hidden md:block">
