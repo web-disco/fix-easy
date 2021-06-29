@@ -66,7 +66,10 @@ const ServicesSlider = ({ module }) => {
       >
         {services.map((service, index) => (
           <SwiperSlide key={index} className="text-center md:text-left">
-            <Link to={`/services/${service.customFields.uRL}`}>
+            <Link
+              to={`/services/${service.customFields.uRL}`}
+              title={service.customFields.title}
+            >
               <div>
                 <img
                   src={service.customFields.icon.url}

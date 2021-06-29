@@ -62,6 +62,16 @@ const PostsListing = () => {
     return str
   }
 
+  if (!results) {
+    return (
+      <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-8 mb-20">
+        <div className="text-center py-20">
+          <h3 className="text-2xl">No posts available in this category.</h3>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 my-8 mb-20">
       <div className="my-12">
@@ -76,48 +86,42 @@ const PostsListing = () => {
           ))}
         </select>
       </div>
-      {results.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {results?.map((post, index) => {
-            const excerpt = truncate(post.customFields.content, 80)
-            return (
-              <div key={index}>
-                <Link to={post.sitemapNode.path}>
-                  <AgilityImage
-                    image={post.customFields.image}
-                    className="rounded-md mb-4"
-                    layout="fullWidth"
-                  />
-                  <p className="text-sm text-lightGrey my-2 block">
-                    {new Date(post.customFields.date).toLocaleDateString()} —{" "}
-                    <span className="text-orange font-medium">
-                      {post.customFields.category_TextField}
-                    </span>
-                  </p>
-                  <h3 className="text-xl font-bold text-darkGrey">
-                    {post.customFields.title}
-                  </h3>
-                  <div
-                    dangerouslySetInnerHTML={renderHTML(excerpt)}
-                    className="mb-2"
-                  />
-                </Link>
-                <Link
-                  to={post.sitemapNode.path}
-                  title={post.customFields.title}
-                  className="font-bold text-orange border-b-3 border-orange pb-1 text-sm"
-                >
-                  Read More
-                </Link>
-              </div>
-            )
-          })}
-        </div>
-      ) : (
-        <div className="text-center py-20">
-          <h3 className="text-2xl">No posts available in this category.</h3>
-        </div>
-      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {results?.map((post, index) => {
+          const excerpt = truncate(post.customFields.content, 80)
+          return (
+            <div key={index}>
+              <Link to={post.sitemapNode.path}>
+                <AgilityImage
+                  image={post.customFields.image}
+                  className="rounded-md mb-4"
+                  layout="fullWidth"
+                />
+                <p className="text-sm text-lightGrey my-2 block">
+                  {new Date(post.customFields.date).toLocaleDateString()} —{" "}
+                  <span className="text-orange font-medium">
+                    {post.customFields.category_TextField}
+                  </span>
+                </p>
+                <h3 className="text-xl font-bold text-darkGrey">
+                  {post.customFields.title}
+                </h3>
+                <div
+                  dangerouslySetInnerHTML={renderHTML(excerpt)}
+                  className="mb-2"
+                />
+              </Link>
+              <Link
+                to={post.sitemapNode.path}
+                title={post.customFields.title}
+                className="font-bold text-orange border-b-3 border-orange pb-1 text-sm"
+              >
+                Read More
+              </Link>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

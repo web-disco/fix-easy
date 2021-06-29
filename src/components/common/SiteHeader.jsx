@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import { FaChevronDown, FaChevronUp, FaBars, FaTimes } from "react-icons/fa"
 
-const SiteHeader = ({ languageCode, isMultiLanguage }) => {
+const SiteHeader = () => {
   // graphql query to fetch our sitemap & header data
   const data = useStaticQuery(graphql`
     query {
@@ -17,7 +17,9 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
           siteName
         }
       }
-      links: allAgilitySitemapNode {
+      links: allAgilitySitemapNode(
+        filter: { visible: { menu: { eq: true } } }
+      ) {
         nodes {
           languageCode
           path
@@ -60,20 +62,7 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
   const services = data.services.nodes
 
   // create our links
-  const links = data.links.nodes.filter(sitemapNode => {
-    // check for top level pages
-    let isTopLevelPage = sitemapNode.path.split("/").length === 2
-
-    // check for pages in current locale
-    const isThisLanguage = sitemapNode.languageCode === languageCode
-
-    if (isMultiLanguage) {
-      isTopLevelPage = sitemapNode.path.split("/").length === 3
-    }
-
-    // return top level pages in current locale
-    return isThisLanguage && isTopLevelPage
-  })
+  const links = data.links.nodes
 
   // no header available
   if (!header) {
@@ -181,7 +170,7 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
           <ul className="z-50">
             {links.map((navitem, index) => {
               return (
-                <li className="py-2 list-none">
+                <li className="py-2 list-none" key={index}>
                   {!navitem.isFolder ? (
                     <Link
                       to={navitem.path}
@@ -205,7 +194,10 @@ const SiteHeader = ({ languageCode, isMultiLanguage }) => {
                         } mt-3 px-8 py-3 text-sm font-medium text-lightGrey bg-lighterGrey`}
                       >
                         {services.map((service, index) => (
-                          <li className="my-3 first:mt-0 last:mb-0 hover:text-orange">
+                          <li
+                            className="my-3 first:mt-0 last:mb-0 hover:text-orange"
+                            key={index}
+                          >
                             <Link
                               to={service.sitemapNode.path}
                               title={service.sitemapNode.title}

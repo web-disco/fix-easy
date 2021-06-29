@@ -5,6 +5,7 @@ import { getPageTemplate } from "./components/agility-pageTemplates"
 import SiteHeader from "./components/common/SiteHeader"
 import SiteFooter from "./components/common/SiteFooter"
 import SEO from "./components/common/SEO"
+import ogImage from "./assets/og-image.png"
 
 //Our query to get the our page data and check for a dynamic page item (agilityItem)
 export const query = graphql`
@@ -17,37 +18,6 @@ export const query = graphql`
       itemID: { eq: $contentID }
     ) {
       itemJson
-    }
-    agilitySiteFooter {
-      linkedContent_agilityLink {
-        customFields {
-          link {
-            text
-            href
-          }
-        }
-      }
-      customFields {
-        newsletterTitle
-        newsletterText
-        column1Title
-        column2Title
-        facebook {
-          href
-          target
-          text
-        }
-        instagram {
-          href
-          target
-          text
-        }
-        twitter {
-          href
-          target
-          text
-        }
-      }
     }
   }
 `
@@ -72,7 +42,7 @@ const AgilityPage = ({ pageContext, data }) => {
         title={viewModel.page.title}
         description={viewModel.page.seo.metaDescription}
         keywords={viewModel.page.seo.metaKeywords}
-        ogImage={viewModel.dynamicPageItem?.customFields?.image?.url}
+        ogImage={ogImage}
       />
       <div id="site-wrapper" className="flex flex-col min-h-screen">
         <SiteHeader
@@ -82,7 +52,7 @@ const AgilityPage = ({ pageContext, data }) => {
         <main className="flex-grow">
           <AgilityPageTemplate {...viewModel} />
         </main>
-        <SiteFooter footer={data.agilitySiteFooter} />
+        <SiteFooter />
       </div>
     </>
   )

@@ -9,7 +9,7 @@ import {
   FaChevronRight,
 } from "react-icons/fa"
 
-const SiteFooter = ({ footer }) => {
+const SiteFooter = () => {
   // query for services
   const data = useStaticQuery(graphql`
     query {
@@ -21,8 +21,43 @@ const SiteFooter = ({ footer }) => {
           }
         }
       }
+      agilitySiteFooter {
+        linkedContent_agilityLink {
+          customFields {
+            link {
+              text
+              href
+            }
+          }
+        }
+        customFields {
+          newsletterTitle
+          newsletterText
+          column1Title
+          column2Title
+          facebook {
+            href
+            target
+            text
+          }
+          instagram {
+            href
+            target
+            text
+          }
+          twitter {
+            href
+            target
+            text
+          }
+        }
+      }
     }
   `)
+
+  // get footer
+  const footer = data.agilitySiteFooter
+
   // get services
   const services = data.allAgilityService.nodes
 
@@ -60,8 +95,8 @@ const SiteFooter = ({ footer }) => {
               {footer.customFields.column1Title}
             </h3>
             <ul>
-              {services.map(service => (
-                <li className="my-2 last:mb-0">
+              {services.map((service, i) => (
+                <li className="my-2 last:mb-0" key={i}>
                   <Link
                     to={service.sitemapNode.pagePath}
                     className="text-sm text-darkGrey hover:text-orange"
@@ -77,8 +112,8 @@ const SiteFooter = ({ footer }) => {
               {footer.customFields.column2Title}
             </h3>
             <ul>
-              {footer.linkedContent_agilityLink.map(link => (
-                <li className="my-2">
+              {footer.linkedContent_agilityLink.map((link, i) => (
+                <li className="my-2" key={i}>
                   <Link
                     to={link.customFields.link.href}
                     className="text-sm text-darkGrey hover:text-orange"
@@ -122,35 +157,35 @@ const SiteFooter = ({ footer }) => {
             <ul className="flex justify-center md:justify-start mb-6">
               <li>
                 {footer.customFields.facebook && (
-                  <Link
-                    to={footer.customFields.facebook.href}
+                  <a
+                    href={footer.customFields.facebook.href}
                     title={footer.customFields.facebook.text}
                     target={footer.customFields.facebook.target}
                   >
                     <FaFacebookSquare className="text-4xl md:text-2xl text-darkGrey mr-4 hover:text-orange" />
-                  </Link>
+                  </a>
                 )}
               </li>
               <li>
                 {footer.customFields.twitter && (
-                  <Link
-                    to={footer.customFields.twitter.href}
+                  <a
+                    href={footer.customFields.twitter.href}
                     title={footer.customFields.twitter.href}
                     target={footer.customFields.twitter.target}
                   >
                     <FaTwitter className="text-4xl md:text-2xl  text-darkGrey mr-4 hover:text-orange" />
-                  </Link>
+                  </a>
                 )}
               </li>
               <li>
                 {footer.customFields.instagram && (
-                  <Link
-                    to={footer.customFields.instagram.href}
+                  <a
+                    href={footer.customFields.instagram.href}
                     title={footer.customFields.instagram.href}
                     target={footer.customFields.instagram.target}
                   >
                     <FaInstagram className="text-4xl md:text-2xl  text-darkGrey mr-4 hover:text-orange" />
-                  </Link>
+                  </a>
                 )}
               </li>
             </ul>
