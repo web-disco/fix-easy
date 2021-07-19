@@ -82,7 +82,7 @@ const ServicesSlider = ({ module }) => {
                   {service.customFields.title}
                 </p>
                 <p className="text-lightGrey">
-                  {service.customFields.shortDescription}
+                  {service.customFields.shortDescription || null}
                 </p>
               </div>
             </Link>
