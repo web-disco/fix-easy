@@ -24,7 +24,6 @@ const ServicesSlider = ({ module }) => {
               url
               label
             }
-            shortDescription
             title
             uRL
           }
@@ -80,9 +79,6 @@ const ServicesSlider = ({ module }) => {
                 />
                 <p className="text-darkGrey font-bold my-2">
                   {service.customFields.title}
-                </p>
-                <p className="text-lightGrey">
-                  {service.customFields.shortDescription || null}
                 </p>
               </div>
             </Link>

@@ -63,9 +63,6 @@ const ServiceDetails = ({ dynamicPageItem }) => {
       <div className="bg-lighterGrey py-28">
         <div className="max-w-screen-xl mx-auto text-center px-4 md:px-8">
           <h1 className="text-4xl font-bold my-2">{customFields.title}</h1>
-          <p className="max-w-md mx-auto mb-8">
-            {customFields.shortDescription}
-          </p>
         </div>
       </div>
       <div className="bg-orange">

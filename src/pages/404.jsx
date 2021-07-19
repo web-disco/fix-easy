@@ -24,7 +24,6 @@ const Error404 = () => {
               url
               label
             }
-            shortDescription
             title
             uRL
           }
@@ -99,9 +98,6 @@ const Error404 = () => {
                   <h4 className="text-darkGrey font-bold my-2">
                     {service.customFields.title}
                   </h4>
-                  <p className="text-lightGrey">
-                    {service.customFields.shortDescription}
-                  </p>
                 </div>
               </Link>
             </SwiperSlide>
