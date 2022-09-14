@@ -35,17 +35,7 @@ const SiteFooter = () => {
           newsletterText
           column1Title
           column2Title
-          facebook {
-            href
-            target
-            text
-          }
           instagram {
-            href
-            target
-            text
-          }
-          twitter {
             href
             target
             text
