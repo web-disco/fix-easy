@@ -1,6 +1,6 @@
 # Fix Easy
 
-Website for Fix Easy
+Website for Fix Easy.
 
 [View Live Site](https://www.fixeasy.ca)
 
